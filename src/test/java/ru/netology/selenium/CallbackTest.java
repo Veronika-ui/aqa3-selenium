@@ -24,6 +24,7 @@ class CallbackTest {
         System.setProperty("webdriver.chrome.driver", "driver//chromedriver.exe");
     }
 
+
     @BeforeEach
     void setUp() {
 
