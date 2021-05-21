@@ -21,28 +21,24 @@ class CallbackTest {
 
     @BeforeAll
     static void setUpAll() {
-        System.setProperty("webdriver.chrome.driver", "driver//chromedriver");
+        System.setProperty("webdriver.chrome.driver", "driver/chromedriver.");
     }
 
     @BeforeEach
     void setUp() {
+
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("start-maximized");
-        options.addArguments("disable-infobars");
         options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--no-sandbox");
         options.addArguments("--headless");
-        options.addArguments("--disable-extensions");
-        options.addArguments("--no-sandbox");
-        driver = new ChromeDriver(options);
+        driver = new ChromeDriver();
     }
 
 
     @AfterEach
     void tearDown() {
-        if (driver != null) {
-            driver.quit();
-        }
+        driver.quit();
+        driver = null;
     }
 
 
@@ -70,7 +66,6 @@ class CallbackTest {
 
 
     }
-
 
     @Test
     void shouldTestErrorName() {
