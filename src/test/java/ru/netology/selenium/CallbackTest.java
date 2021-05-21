@@ -68,6 +68,7 @@ class CallbackTest {
 
     }
 
+
     @Test
     void shouldTestErrorName() {
         driver.get("http://localhost:9999/");
