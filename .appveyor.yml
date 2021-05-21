@@ -9,9 +9,9 @@ branches:
 build: off
 
 install:
-  - chmod +x gradlew
-  - chmod +x /home/appveyor/projects/aqa3-selenium/driver/chromedriver
-  - java -jar ./artifacts/app-mbank.jar &
+
+  - java -jar ./artifacts/app-card-delivery.jar &
 
 build_script:
-  - ./gradlew test --info
+
+  - ./gradlew test --info -Dselenide.headless=true
