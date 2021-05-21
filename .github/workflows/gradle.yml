@@ -24,6 +24,6 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
      - name: Grant execute permission for chromedriver
-     run: chmod rwx /home/appveyor/projects/aqa3-selenium/driver/chromedriver
+     run: chmod +x /home/appveyor/projects/aqa3-selenium/driver/chromedriver
     - name: Build with Gradle
       run: ./gradlew build
