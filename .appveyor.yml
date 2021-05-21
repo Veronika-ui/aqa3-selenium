@@ -13,10 +13,6 @@ install:
 
 
   - name: install
-        run: java -jar ./artifacts/app-mbank.jar &
-    chmod +x gradlew
+      run: java -jar ./artifacts/app-mbank.jar &
   - name: Build with Gradle
-            run: ./gradlew test --info -Dselenide.headless=true
-
-build_script:
-  - ./gradlew test --info "-Dselenide.headless=true"
+    run: ./gradlew test --info -Dselenide.headless=true
