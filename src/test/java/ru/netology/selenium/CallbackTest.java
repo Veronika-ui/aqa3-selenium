@@ -40,8 +40,9 @@ class CallbackTest {
 
     @AfterEach
     void tearDown() {
-        driver.quit();
-        driver = null;
+        if (driver != null) {
+            driver.quit();
+        }
     }
 
 
