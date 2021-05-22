@@ -1,19 +1,18 @@
+image: Ubuntu  # образ для сборки
 
+
+stack: jdk 11  # версия JDK
+
+branches:
+  only:
+    - main  # ветка git
+
+build: off
+
+install:
+  # запускаем SUT (& означает, что в фоновом режиме - не блокируем терминал для запуска тестов)
+  - java -jar ./artifacts/app-ibank.jar -P:profile=test &
 
 build_script:
-  - ./gradlew test --info
-    environment:
-      matrix:
-
-        # Windows job
-        - job_name: Windows build
-          appveyor_build_worker_image: Visual Studio 2019
-
-        # Linux job
-        - job_name: Linux build
-          appveyor_build_worker_image: Ubuntu1804
-
-    matrix:
-      fast_finish: true
-
-    configuration: Release
+  - chmod +x gradlew
+  - ./gradlew test --info "-Dselenide.headless=true" # запускаем тест, флаг --info позволяет выводить больше информации
