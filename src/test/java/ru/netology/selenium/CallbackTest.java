@@ -27,6 +27,7 @@ class CallbackTest {
     @BeforeEach
     void setUp() {
 
+
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--no-sandbox");
