@@ -1,21 +1,19 @@
-image: Ubuntu  # образ для сборки
-  # Windows job
-  - job_name: Windows build
-    appveyor_build_worker_image: Visual Studio 2019
 
-stack: jdk 11  # версия JDK
-
-branches:
-  only:
-    - main  # ветка git
-
-build: off
-
-install:
-
-  - chmod +x gradlew
-
-  - java -jar ./artifacts/app-mbank.jar &
 
 build_script:
   - ./gradlew test --info
+    environment:
+      matrix:
+
+        # Windows job
+        - job_name: Windows build
+          appveyor_build_worker_image: Visual Studio 2019
+
+        # Linux job
+        - job_name: Linux build
+          appveyor_build_worker_image: Ubuntu1804
+
+    matrix:
+      fast_finish: true
+
+    configuration: Release
