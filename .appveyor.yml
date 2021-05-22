@@ -10,9 +10,8 @@ build: off
 
 install:
    - chmod +x chromedriver
-  - chmod +x gradlew
-
-  - java -jar ./artifacts/app-mbank.jar &
+   - java -jar ./artifacts/app-mbank.jar &
+   -  chmod +x gradlew
 
 build_script:
   - ./gradlew test --info
