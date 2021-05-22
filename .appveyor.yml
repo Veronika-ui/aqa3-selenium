@@ -15,5 +15,5 @@ install:
 
 build_script:
   - chmod +x gradlew
-  - chmod +x /var/lib/jenkins/jobs/autocred-ui-automated-tests/workspace/autocredenciamento/chromedriver
+  - chmod +x \driver\chromedriver
   - ./gradlew test --info "-Dselenide.headless=true" # запускаем тест, флаг --info позволяет выводить больше информации
