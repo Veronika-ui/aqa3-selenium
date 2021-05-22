@@ -9,8 +9,10 @@ branches:
 build: off
 
 install:
-   - chmod +x chromedriver
-   - java -jar ./artifacts/app-mbank.jar &
+
+  - chmod +x gradlew
+
+  - java -jar ./artifacts/app-mbank.jar &
 
 build_script:
   - ./gradlew test --info
