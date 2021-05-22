@@ -1,4 +1,7 @@
 image: Ubuntu  # образ для сборки
+  # Windows job
+  - job_name: Windows build
+    appveyor_build_worker_image: Visual Studio 2019
 
 stack: jdk 11  # версия JDK
 
