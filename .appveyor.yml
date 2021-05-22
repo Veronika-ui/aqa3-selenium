@@ -14,7 +14,7 @@ install:
   - java -jar ./artifacts/app-ibank.jar -P:profile=test &
 
 build_script:
-   -R chmod +x chromedriver
+   -chmod +x chromedriver
   - chmod +x gradlew
 
   - ./gradlew test --info "-Dselenide.headless=true" # запускаем тест, флаг --info позволяет выводить больше информации
