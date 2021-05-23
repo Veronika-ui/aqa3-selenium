@@ -45,47 +45,53 @@ class CallbackTest {
     @Test
     void shouldTest() {
         driver.get("http://localhost:9999/");
-        driver.findElement(cssSelector("[class='input__control'][type='text']")).sendKeys("Пупкин Вася");
-        driver.findElement(cssSelector("[class='input__control'][type='tel']")).sendKeys("+79967466215");
-        driver.findElement(cssSelector(".checkbox__box")).click();
-        driver.findElement(cssSelector("button")).click();
-        String message = driver.findElement(cssSelector(".paragraph")).getText();
-        assertEquals("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.", message.trim());
+        driver.findElement(cssSelector("[data-test-id=name] input ")).sendKeys("Пупкин Вася");
+        driver.findElement(cssSelector("[data-test-id='phone'] input")).sendKeys("+79967466215");
+        driver.findElement(cssSelector("[data-test-id=agreement]")).click();
+        driver.findElement(cssSelector(".button__content")).click();
+        String text = driver.findElement(cssSelector("[data-test-id=order-success]")).getText();
+        assertEquals("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.", text.trim());
 
 
     }
 
 
     @Test
-    void shouldTestError1() {
+    void shouldTestError() {
         driver.get("http://localhost:9999/");
-        driver.findElement(cssSelector("[class='input__control'][type='text']")).sendKeys("");
-        driver.findElement(cssSelector("button")).click();
-        String message = driver.findElement(cssSelector(".input__sub")).getText();
-        assertEquals("Поле обязательно для заполнения", message.trim());
+        driver.findElement(cssSelector("[data-test-id=name] input ")).sendKeys("");
+        driver.findElement(cssSelector("[data-test-id='phone'] input")).sendKeys("");
+        driver.findElement(cssSelector("[data-test-id=agreement]")).click();
+        driver.findElement(cssSelector(".button__content")).click();
+        String text = driver.findElement(cssSelector("[data-test-id=name].input_invalid .input__sub")).getText();
+        assertEquals("Поле обязательно для заполнения", text.trim());
 
 
     }
+
 
     @Test
     void shouldTestErrorName() {
         driver.get("http://localhost:9999/");
-        driver.findElement(cssSelector("[class='input__control'][type='text']")).sendKeys("Nika - Mironova");
-        driver.findElement(cssSelector("button")).click();
-        String message = driver.findElement(cssSelector(".input__sub")).getText();
-        assertEquals("Имя и Фамилия указаные неверно. Допустимы только русские буквы, пробелы и дефисы.", message.trim());
+        driver.findElement(cssSelector("[data-test-id=name] input ")).sendKeys("Vero Nika");
+        driver.findElement(cssSelector("[data-test-id='phone'] input")).sendKeys("+79967466215");
+        driver.findElement(cssSelector("[data-test-id=agreement]")).click();
+        driver.findElement(cssSelector(".button__content")).click();
+        String text = driver.findElement(cssSelector("[data-test-id=name].input_invalid .input__sub")).getText();
+        assertEquals("Имя и Фамилия указаные неверно. Допустимы только русские буквы, пробелы и дефисы.", text.trim());
 
     }
+
 
     @Test
     void shouldTestErorrNumber() {
         driver.get("http://localhost:9999/");
-        driver.findElement(cssSelector("[class='input__control'][type='text']")).sendKeys("Пупкин Вася");
-        driver.findElement(cssSelector("[class='input__control'][type='tel']")).sendKeys("+79");
-        driver.findElement(cssSelector(".checkbox__box")).click();
-        driver.findElement(cssSelector("button")).click();
-        String message = driver.findElement(cssSelector(".input_invalid .input__sub")).getText();
-        assertEquals("Телефон указан неверно. Должно быть 11 цифр, например, +79012345678.", message.trim());
+        driver.findElement(cssSelector("[data-test-id=name] input ")).sendKeys("Пупкин Вася");
+        driver.findElement(cssSelector("[data-test-id='phone'] input")).sendKeys("+8765");
+        driver.findElement(cssSelector("[data-test-id=agreement]")).click();
+        driver.findElement(cssSelector(".button__content")).click();
+        String text = driver.findElement(cssSelector(".input_invalid .input__sub")).getText();
+        assertEquals("Телефон указан неверно. Должно быть 11 цифр, например, +79012345678.", text.trim());
 
     }
 
@@ -93,24 +99,24 @@ class CallbackTest {
     @Test
     void shouldTestEmptyField() {
         driver.get("http://localhost:9999/");
-        driver.findElement(cssSelector("[class='input__control'][type='text']")).sendKeys("");
-        driver.findElement(cssSelector("[class='input__control'][type='tel']")).sendKeys("");
-        driver.findElement(cssSelector(".checkbox__box")).click();
-        driver.findElement(cssSelector("button")).click();
-        String message = driver.findElement(cssSelector(".input_invalid .input__sub")).getText();
-        assertEquals("Поле обязательно для заполнения", message.trim());
+        driver.findElement(cssSelector("[data-test-id=name] input ")).sendKeys("");
+        driver.findElement(cssSelector("[data-test-id='phone'] input")).sendKeys("");
+        driver.findElement(cssSelector("[data-test-id=agreement]")).click();
+        driver.findElement(cssSelector(".button__content")).click();
+        String text = driver.findElement(cssSelector("[data-test-id=name].input_invalid .input__sub")).getText();
+        assertEquals("Поле обязательно для заполнения", text.trim());
 
 
     }
     @Test
     void shouldTestEmpty() {
         driver.get("http://localhost:9999/");
-        driver.findElement(cssSelector("[class='input__control'][type='text']")).sendKeys("");
-        driver.findElement(cssSelector("[class='input__control'][type='tel']")).sendKeys("+79967466215");
-        driver.findElement(cssSelector(".checkbox__box")).click();
-        driver.findElement(cssSelector("button")).click();
-        String message = driver.findElement(cssSelector(".input_invalid .input__sub")).getText();
-        assertEquals("Поле обязательно для заполнения", message.trim());
+        driver.findElement(cssSelector("[data-test-id=name] input ")).sendKeys("");
+        driver.findElement(cssSelector("[data-test-id='phone'] input")).sendKeys("+79967466215");
+        driver.findElement(cssSelector("[data-test-id=agreement]")).click();
+        driver.findElement(cssSelector(".button__content")).click();
+        String text = driver.findElement(cssSelector("[data-test-id=name].input_invalid .input__sub.input__sub")).getText();
+        assertEquals("Поле обязательно для заполнения", text.trim());
 
 
     }
